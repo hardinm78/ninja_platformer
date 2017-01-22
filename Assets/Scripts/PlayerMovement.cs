@@ -45,19 +45,22 @@ public class PlayerMovement : MonoBehaviour {
 			if (canJump) {
 				rigi.AddForce (new Vector2 (0, jumpForce), ForceMode2D.Impulse);
 				anim.SetTrigger ("jumping");
+				canJump = false;
+			}
+		}
+
+
+		if (Input.GetButtonDown ("Fire1")) {
+				anim.SetTrigger ("attacking");
 			}
 		}
 		
-	}
+
 
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.tag == "Ground") {
 			canJump = true;
 		}
 	}
-	void OnCollisionExit2D(Collision2D other){
-		if (other.gameObject.tag == "Ground") {
-			canJump = false;
-		}
-	}
+
 }
